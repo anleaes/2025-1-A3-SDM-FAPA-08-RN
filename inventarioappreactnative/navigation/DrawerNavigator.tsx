@@ -15,6 +15,11 @@ import { PlayerProfile } from '../screens/PlayerProfilesScreen';
 import CreatePlayerProfileScreen from '../screens/CreatePlayerProfileScreen';
 import EditPlayerProfileScreen from '../screens/EditPlayerProfileScreen';
 
+import ItemsScreen from '../screens/ItemsScreen';
+import { Item } from '../screens/ItemsScreen';
+import CreateItemScreen from '../screens/CreateItemScreen';
+import EditItemScreen from '../screens/EditItemScreen';
+
 export type DrawerParamList = {
   Home: undefined;
   Users: undefined;
@@ -23,6 +28,9 @@ export type DrawerParamList = {
   PlayerProfiles: undefined;
   CreatePlayerProfile: undefined;
   EditPlayerProfile: { profile: PlayerProfile };
+  Items: undefined;
+  CreateItem: undefined;
+  EditItem: { item: Item };
 };
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
@@ -83,6 +91,24 @@ const DrawerNavigator = () => {
         name="EditPlayerProfile"
         component={EditPlayerProfileScreen}
         options={{ drawerItemStyle: { display: 'none' }, title: 'Editar Perfil' }}
+      />
+      <Drawer.Screen
+        name="Items"
+        component={ItemsScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="cube-outline" size={size} color={color} />,
+          title: 'Itens',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateItem"
+        component={CreateItemScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Novo Item' }}
+      />
+      <Drawer.Screen
+        name="EditItem"
+        component={EditItemScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar Item' }}
       />
     </Drawer.Navigator>  
   );
