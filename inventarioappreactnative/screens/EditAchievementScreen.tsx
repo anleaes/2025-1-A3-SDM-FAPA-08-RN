@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { DrawerScreenProps } from '@react-navigation/drawer';
+import { DrawerParamList } from '../navigation/DrawerNavigator';
 
-const EditAchievementScreen = ({ route, navigation }: any) => {
+type Props = DrawerScreenProps<DrawerParamList, 'EditAchievement'>;
+
+const EditAchievementScreen = ({ route, navigation }: Props) => {
   const { achievement } = route?.params || { achievement: { id: 0, title: '', description: '', points: 0 } };
   const [title, setTitle] = useState(achievement.title);
   const [description, setDescription] = useState(achievement.description);
@@ -28,7 +32,7 @@ const EditAchievementScreen = ({ route, navigation }: any) => {
         }),
       }
     );
-    // navigation.navigate('Achievements');
+    navigation.navigate('Achievements');
     setSaving(false);
   };
 
@@ -59,9 +63,7 @@ const EditAchievementScreen = ({ route, navigation }: any) => {
       ) : (
         <Button title="Salvar" onPress={handleSave} color="#4B7BE5" />
       )}
-      <Button title="Voltar" onPress={() => {
-        // navigation.navigate('Achievements')
-      }} />
+      <Button title="Voltar" onPress={() => navigation.navigate('Achievements')} />
     </View>
   );
 };

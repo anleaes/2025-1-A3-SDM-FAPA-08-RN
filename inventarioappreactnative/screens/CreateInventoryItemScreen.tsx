@@ -1,8 +1,12 @@
+import { DrawerScreenProps } from '@react-navigation/drawer';
 import { useFocusEffect } from 'expo-router';
 import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { DrawerParamList } from '../navigation/DrawerNavigator';
 
-const CreateInventoryItemScreen = ({ navigation }: any) => {
+type Props = DrawerScreenProps<DrawerParamList, 'CreateInventoryItem'>;
+
+const CreateInventoryItemScreen = ({ navigation }: Props) => {
   const [inventory, setInventory] = useState('');
   const [item, setItem] = useState('');
   const [quantity, setQuantity] = useState('');
@@ -27,7 +31,7 @@ const CreateInventoryItemScreen = ({ navigation }: any) => {
         quantity: parseInt(quantity) || 1 
       }),
     });
-    // navigation.navigate('InventoryItems');  
+    navigation.navigate('InventoryItems');  
     setSaving(false);
   };
 
@@ -60,9 +64,7 @@ const CreateInventoryItemScreen = ({ navigation }: any) => {
         ? <ActivityIndicator size="large" color="#4B7BE5" />
         : <Button title="Salvar" onPress={handleSave} color="#4B7BE5" />
       }
-      <Button title="Voltar" onPress={() => {
-        // navigation.navigate('InventoryItems')
-      }} />
+      <Button title="Voltar" onPress={() => navigation.navigate('InventoryItems')} />
     </View>
   );
 };

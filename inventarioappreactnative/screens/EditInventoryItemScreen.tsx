@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { DrawerScreenProps } from '@react-navigation/drawer';
+import { DrawerParamList } from '../navigation/DrawerNavigator';
 
-const EditInventoryItemScreen = ({ route, navigation }: any) => {
+type Props = DrawerScreenProps<DrawerParamList, 'EditInventoryItem'>;
+
+const EditInventoryItemScreen = ({ route, navigation }: Props) => {
   const { inventoryItem } = route?.params || { inventoryItem: { id: 0, inventory: 0, item: 0, quantity: 1 } };
   const [inventory, setInventory] = useState(inventoryItem.inventory.toString());
   const [item, setItem] = useState(inventoryItem.item.toString());
@@ -28,7 +32,7 @@ const EditInventoryItemScreen = ({ route, navigation }: any) => {
         }),
       }
     );
-    // navigation.navigate('InventoryItems');
+    navigation.navigate('InventoryItems');
     setSaving(false);
   };
 
@@ -60,9 +64,7 @@ const EditInventoryItemScreen = ({ route, navigation }: any) => {
       ) : (
         <Button title="Salvar" onPress={handleSave} color="#4B7BE5" />
       )}
-      <Button title="Voltar" onPress={() => {
-        // navigation.navigate('InventoryItems')
-      }} />
+      <Button title="Voltar" onPress={() => navigation.navigate('InventoryItems')} />
     </View>
   );
 };

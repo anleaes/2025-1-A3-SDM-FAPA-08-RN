@@ -1,8 +1,12 @@
+import { DrawerScreenProps } from '@react-navigation/drawer';
 import { useFocusEffect } from 'expo-router';
 import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { DrawerParamList } from '../navigation/DrawerNavigator';
 
-const CreateQuestScreen = ({ navigation }: any) => {
+type Props = DrawerScreenProps<DrawerParamList, 'CreateQuest'>;
+
+const CreateQuestScreen = ({ navigation }: Props) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [xpReward, setXpReward] = useState('');
@@ -27,7 +31,7 @@ const CreateQuestScreen = ({ navigation }: any) => {
         xp_reward: parseInt(xpReward) || 0 
       }),
     });
-    // navigation.navigate('Quests');  
+    navigation.navigate('Quests');  
     setSaving(false);
   };
 
@@ -59,9 +63,7 @@ const CreateQuestScreen = ({ navigation }: any) => {
         ? <ActivityIndicator size="large" color="#4B7BE5" />
         : <Button title="Salvar" onPress={handleSave} color="#4B7BE5" />
       }
-      <Button title="Voltar" onPress={() => {
-        // navigation.navigate('Quests')
-      }} />
+      <Button title="Voltar" onPress={() => navigation.navigate('Quests')} />
     </View>
   );
 };

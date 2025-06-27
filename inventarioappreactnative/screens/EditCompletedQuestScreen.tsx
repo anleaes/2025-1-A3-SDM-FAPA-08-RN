@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { DrawerScreenProps } from '@react-navigation/drawer';
+import { DrawerParamList } from '../navigation/DrawerNavigator';
 
-const EditCompletedQuestScreen = ({ route, navigation }: any) => {
+type Props = DrawerScreenProps<DrawerParamList, 'EditCompletedQuest'>;
+
+const EditCompletedQuestScreen = ({ route, navigation }: Props) => {
   const { completedQuest } = route?.params || { completedQuest: { id: 0, player_profile: 0, quest: 0, completion_date: '' } };
   const [playerProfile, setPlayerProfile] = useState(completedQuest.player_profile.toString());
   const [quest, setQuest] = useState(completedQuest.quest.toString());
@@ -25,7 +29,7 @@ const EditCompletedQuestScreen = ({ route, navigation }: any) => {
         }),
       }
     );
-    // navigation.navigate('CompletedQuests');
+    navigation.navigate('CompletedQuests');
     setSaving(false);
   };
 
@@ -50,9 +54,7 @@ const EditCompletedQuestScreen = ({ route, navigation }: any) => {
       ) : (
         <Button title="Salvar" onPress={handleSave} color="#4B7BE5" />
       )}
-      <Button title="Voltar" onPress={() => {
-        // navigation.navigate('CompletedQuests')
-      }} />
+      <Button title="Voltar" onPress={() => navigation.navigate('CompletedQuests')} />
     </View>
   );
 };
