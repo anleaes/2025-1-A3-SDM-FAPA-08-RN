@@ -5,8 +5,16 @@ import CustomDrawerContent from '../components/CustomDrawerContent';
 
 import HomeScreen from '../screens/HomeScreen';
 
+import UsersScreen from '../screens/UsersScreen';
+import { User } from '../screens/UsersScreen';
+import CreateUserScreen from '../screens/CreateUserScreen';
+import EditUserScreen from '../screens/EditUserScreen';
+
 export type DrawerParamList = {
   Home: undefined;
+  Users: undefined;
+  CreateUser: undefined;
+  EditUser: { user: User };
 };
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
@@ -31,6 +39,24 @@ const DrawerNavigator = () => {
           drawerIcon: ({ color, size }) => <Ionicons name="home-outline" size={size} color={color}  />,
           title: 'Home',
         }}
+      />
+      <Drawer.Screen
+        name="Users"
+        component={UsersScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="people-outline" size={size} color={color} />,
+          title: 'Usuários',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateUser"
+        component={CreateUserScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Novo Usuário' }}
+      />
+      <Drawer.Screen
+        name="EditUser"
+        component={EditUserScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar Usuário' }}
       />
     </Drawer.Navigator>  
   );
