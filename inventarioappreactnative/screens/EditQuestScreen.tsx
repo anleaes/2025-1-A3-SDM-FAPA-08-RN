@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { DrawerScreenProps } from '@react-navigation/drawer';
+import { DrawerParamList } from '../navigation/DrawerNavigator';
 
-const EditQuestScreen = ({ route, navigation }: any) => {
+type Props = DrawerScreenProps<DrawerParamList, 'EditQuest'>;
+
+const EditQuestScreen = ({ route, navigation }: Props) => {
   const { quest } = route?.params || { quest: { id: 0, title: '', description: '', xp_reward: 0 } };
   const [title, setTitle] = useState(quest.title);
   const [description, setDescription] = useState(quest.description);
@@ -28,7 +32,7 @@ const EditQuestScreen = ({ route, navigation }: any) => {
         }),
       }
     );
-    // navigation.navigate('Quests');
+    navigation.navigate('Quests');
     setSaving(false);
   };
 
@@ -59,9 +63,7 @@ const EditQuestScreen = ({ route, navigation }: any) => {
       ) : (
         <Button title="Salvar" onPress={handleSave} color="#4B7BE5" />
       )}
-      <Button title="Voltar" onPress={() => {
-        // navigation.navigate('Quests')
-      }} />
+      <Button title="Voltar" onPress={() => navigation.navigate('Quests')} />
     </View>
   );
 };

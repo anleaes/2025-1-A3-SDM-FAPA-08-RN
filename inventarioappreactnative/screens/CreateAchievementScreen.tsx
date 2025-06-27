@@ -1,8 +1,12 @@
+import { DrawerScreenProps } from '@react-navigation/drawer';
 import { useFocusEffect } from 'expo-router';
 import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { DrawerParamList } from '../navigation/DrawerNavigator';
 
-const CreateAchievementScreen = ({ navigation }: any) => {
+type Props = DrawerScreenProps<DrawerParamList, 'CreateAchievement'>;
+
+const CreateAchievementScreen = ({ navigation }: Props) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [points, setPoints] = useState('');
@@ -27,7 +31,7 @@ const CreateAchievementScreen = ({ navigation }: any) => {
         points: parseInt(points) || 0 
       }),
     });
-    // navigation.navigate('Achievements');  
+    navigation.navigate('Achievements');  
     setSaving(false);
   };
 
@@ -59,9 +63,7 @@ const CreateAchievementScreen = ({ navigation }: any) => {
         ? <ActivityIndicator size="large" color="#4B7BE5" />
         : <Button title="Salvar" onPress={handleSave} color="#4B7BE5" />
       }
-      <Button title="Voltar" onPress={() => {
-        // navigation.navigate('Achievements')
-      }} />
+      <Button title="Voltar" onPress={() => navigation.navigate('Achievements')} />
     </View>
   );
 };

@@ -1,8 +1,12 @@
+import { DrawerScreenProps } from '@react-navigation/drawer';
 import { useFocusEffect } from 'expo-router';
 import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { DrawerParamList } from '../navigation/DrawerNavigator';
 
-const CreateCompletedQuestScreen = ({ navigation }: any) => {
+type Props = DrawerScreenProps<DrawerParamList, 'CreateCompletedQuest'>;
+
+const CreateCompletedQuestScreen = ({ navigation }: Props) => {
   const [playerProfile, setPlayerProfile] = useState('');
   const [quest, setQuest] = useState('');
   const [saving, setSaving] = useState(false);
@@ -24,7 +28,7 @@ const CreateCompletedQuestScreen = ({ navigation }: any) => {
         quest: parseInt(quest)
       }),
     });
-    // navigation.navigate('CompletedQuests');  
+    navigation.navigate('CompletedQuests');  
     setSaving(false);
   };
 
@@ -49,9 +53,7 @@ const CreateCompletedQuestScreen = ({ navigation }: any) => {
         ? <ActivityIndicator size="large" color="#4B7BE5" />
         : <Button title="Salvar" onPress={handleSave} color="#4B7BE5" />
       }
-      <Button title="Voltar" onPress={() => {
-        // navigation.navigate('CompletedQuests')
-      }} />
+      <Button title="Voltar" onPress={() => navigation.navigate('CompletedQuests')} />
     </View>
   );
 };
