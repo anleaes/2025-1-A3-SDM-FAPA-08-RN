@@ -25,6 +25,26 @@ import { Inventory } from '../screens/InventoriesScreen';
 import CreateInventoryScreen from '../screens/CreateInventoryScreen';
 import EditInventoryScreen from '../screens/EditInventoryScreen';
 
+import InventoryItemsScreen from '../screens/InventoryItemsScreen';
+import { InventoryItem } from '../screens/InventoryItemsScreen';
+import CreateInventoryItemScreen from '../screens/CreateInventoryItemScreen';
+import EditInventoryItemScreen from '../screens/EditInventoryItemScreen';
+
+import QuestsScreen from '../screens/QuestsScreen';
+import { Quest } from '../screens/QuestsScreen';
+import CreateQuestScreen from '../screens/CreateQuestScreen';
+import EditQuestScreen from '../screens/EditQuestScreen';
+
+import CompletedQuestsScreen from '../screens/CompletedQuestsScreen';
+import { CompletedQuest } from '../screens/CompletedQuestsScreen';
+import CreateCompletedQuestScreen from '../screens/CreateCompletedQuestScreen';
+import EditCompletedQuestScreen from '../screens/EditCompletedQuestScreen';
+
+import AchievementsScreen from '../screens/AchievementsScreen';
+import { Achievement } from '../screens/AchievementsScreen';
+import CreateAchievementScreen from '../screens/CreateAchievementScreen';
+import EditAchievementScreen from '../screens/EditAchievementScreen';
+
 export type DrawerParamList = {
   Home: undefined;
   Users: undefined;
@@ -39,6 +59,18 @@ export type DrawerParamList = {
   Inventories: undefined;
   CreateInventory: undefined;
   EditInventory: { inventory: Inventory };
+  InventoryItems: undefined;
+  CreateInventoryItem: undefined;
+  EditInventoryItem: { inventoryItem: InventoryItem };
+  Quests: undefined;
+  CreateQuest: undefined;
+  EditQuest: { quest: Quest };
+  CompletedQuests: undefined;
+  CreateCompletedQuest: undefined;
+  EditCompletedQuest: { completedQuest: CompletedQuest };
+  Achievements: undefined;
+  CreateAchievement: undefined;
+  EditAchievement: { achievement: Achievement };
 };
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
@@ -135,7 +167,79 @@ const DrawerNavigator = () => {
         name="EditInventory"
         component={EditInventoryScreen}
         options={{ drawerItemStyle: { display: 'none' }, title: 'Editar Inventário' }}
-      />      
+      />  
+      <Drawer.Screen
+        name="InventoryItems"
+        component={InventoryItemsScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="layers-outline" size={size} color={color} />,
+          title: 'Itens do Inventário',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateInventoryItem"
+        component={CreateInventoryItemScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Novo Item do Inventário' }}
+      />
+      <Drawer.Screen
+        name="EditInventoryItem"
+        component={EditInventoryItemScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar Item do Inventário' }}
+      />
+      <Drawer.Screen
+        name="Quests"
+        component={QuestsScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="shield-outline" size={size} color={color} />,
+          title: 'Quests',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateQuest"
+        component={CreateQuestScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Nova Quest' }}
+      />
+      <Drawer.Screen
+        name="EditQuest"
+        component={EditQuestScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar Quest' }}
+      />
+      <Drawer.Screen
+        name="CompletedQuests"
+        component={CompletedQuestsScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="checkmark-circle-outline" size={size} color={color} />,
+          title: 'Quests Completadas',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateCompletedQuest"
+        component={CreateCompletedQuestScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Nova Quest Completada' }}
+      />
+      <Drawer.Screen
+        name="EditCompletedQuest"
+        component={EditCompletedQuestScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar Quest Completada' }}
+      />
+      <Drawer.Screen
+        name="Achievements"
+        component={AchievementsScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="trophy-outline" size={size} color={color} />,
+          title: 'Conquistas',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateAchievement"
+        component={CreateAchievementScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Nova Conquista' }}
+      />
+      <Drawer.Screen
+        name="EditAchievement"
+        component={EditAchievementScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar Conquista' }}
+      />    
     </Drawer.Navigator>  
   );
 };
