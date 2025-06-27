@@ -20,6 +20,11 @@ import { Item } from '../screens/ItemsScreen';
 import CreateItemScreen from '../screens/CreateItemScreen';
 import EditItemScreen from '../screens/EditItemScreen';
 
+import InventoriesScreen from '../screens/InventoriesScreen';
+import { Inventory } from '../screens/InventoriesScreen';
+import CreateInventoryScreen from '../screens/CreateInventoryScreen';
+import EditInventoryScreen from '../screens/EditInventoryScreen';
+
 export type DrawerParamList = {
   Home: undefined;
   Users: undefined;
@@ -31,6 +36,9 @@ export type DrawerParamList = {
   Items: undefined;
   CreateItem: undefined;
   EditItem: { item: Item };
+  Inventories: undefined;
+  CreateInventory: undefined;
+  EditInventory: { inventory: Inventory };
 };
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
@@ -110,6 +118,24 @@ const DrawerNavigator = () => {
         component={EditItemScreen}
         options={{ drawerItemStyle: { display: 'none' }, title: 'Editar Item' }}
       />
+      <Drawer.Screen
+        name="Inventories"
+        component={InventoriesScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="bag-outline" size={size} color={color} />,
+          title: 'Inventários',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateInventory"
+        component={CreateInventoryScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Novo Inventário' }}
+      />
+      <Drawer.Screen
+        name="EditInventory"
+        component={EditInventoryScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar Inventário' }}
+      />      
     </Drawer.Navigator>  
   );
 };
