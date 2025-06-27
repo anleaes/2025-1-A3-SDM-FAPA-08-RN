@@ -10,11 +10,19 @@ import { User } from '../screens/UsersScreen';
 import CreateUserScreen from '../screens/CreateUserScreen';
 import EditUserScreen from '../screens/EditUserScreen';
 
+import PlayerProfilesScreen from '../screens/PlayerProfilesScreen';
+import { PlayerProfile } from '../screens/PlayerProfilesScreen';
+import CreatePlayerProfileScreen from '../screens/CreatePlayerProfileScreen';
+import EditPlayerProfileScreen from '../screens/EditPlayerProfileScreen';
+
 export type DrawerParamList = {
   Home: undefined;
   Users: undefined;
   CreateUser: undefined;
   EditUser: { user: User };
+  PlayerProfiles: undefined;
+  CreatePlayerProfile: undefined;
+  EditPlayerProfile: { profile: PlayerProfile };
 };
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
@@ -57,6 +65,24 @@ const DrawerNavigator = () => {
         name="EditUser"
         component={EditUserScreen}
         options={{ drawerItemStyle: { display: 'none' }, title: 'Editar Usuário' }}
+      />
+      <Drawer.Screen
+        name="PlayerProfiles"
+        component={PlayerProfilesScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="person-circle-outline" size={size} color={color} />,
+          title: 'Perfis de Jogador',
+        }}
+      />
+      <Drawer.Screen
+        name="CreatePlayerProfile"
+        component={CreatePlayerProfileScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Novo Perfil' }}
+      />
+      <Drawer.Screen
+        name="EditPlayerProfile"
+        component={EditPlayerProfileScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar Perfil' }}
       />
     </Drawer.Navigator>  
   );
